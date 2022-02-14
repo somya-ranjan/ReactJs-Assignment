@@ -1,20 +1,22 @@
-import {React} from 'react'
+import {React,useRef} from 'react'
 import '../../style/style.css'
 import { useForm } from 'react-hook-form'
 import classNames from 'classnames'
 
 function ContactComp() {
     const{register,handleSubmit,formState: { errors }}=useForm()
+    const form = useRef();
     const onSubmit=(data)=>{
         console.log(data);
         alert(JSON.stringify(data))
+        form.current.reset()
     }
   return (
         <div className='contact_comp_section'>
             <div className="container">
                 <div className="row justify-content-evenly align-items-center">
                     <div className="col-8">
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form ref={form} onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
                                 <input
                                     type="text"
